@@ -2,8 +2,7 @@ package alken1t.shop.controller;
 
 import alken1t.shop.pojo.Product;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +25,26 @@ public class LessonController {
 //        return products;
 //    }
 
-    @RequestMapping(path = "/first_resource", produces = "text/plain")
-    public String firstResource(){
+//    @RequestMapping(path = "/first_resource", produces = "text/plain")
+//    public String firstResource(){
+//        return "Test message";
+//    }
+
+    @GetMapping(path = "/first_resource", produces = "text/plain")
+    public String firstResource() {
         return "Test message";
+    }
+
+    @RequestMapping(path = "/second_resource")
+    public String secondResource(@RequestParam(name = "first_name", required = false) String name, @RequestParam(required = false) Integer age) {
+        System.out.println(name);
+        System.out.println(age);
+        return "Second resource";
+    }
+
+    @GetMapping(path = "/third_resource/{login}")
+    public String thirdResource(@PathVariable String login) {
+        System.out.printf("Login: %s%n", login);
+        return "Third resource";
     }
 }
