@@ -3,11 +3,17 @@ package alken1t.shop.controller;
 import alken1t.shop.entity.Category;
 import alken1t.shop.entity.Product;
 import alken1t.shop.repository.CategoryRepository;
+import alken1t.shop.repository.ProductRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,6 +25,9 @@ public class DataController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping(path = "/first_resource")
     public Object firstResource(){
@@ -39,4 +48,30 @@ public class DataController {
             return "Category ont found";
         }
     }
+
+    @GetMapping(path = "/secondResource",produces = "application/json; charset=utf-8")
+    public List<String> secondResource(){
+        Sort sort = Sort.by(
+                Sort.Order.asc("category.name"),
+                Sort.Order.desc("price")
+        );
+        List<Product> products = productRepository.findAll(sort);
+       return products
+               .stream()
+               .map(product -> product.getName() + " ("+ product.getPrice() + ") ")
+               .toList();
+    }
+
+    @GetMapping(path = "/thirdResource",produces = "application/json; charset=utf-8")
+    public List<String> thirdResource(@RequestParam(required = false) Integer page){
+        Pageable pageable = PageRequest.of(page-1,3);
+        Page<Product> productPage = productRepository.findAll(pageable);
+        List<Product> products = productPage.getContent();
+        return products
+                .stream()
+                .map(product -> product.getName() + " ("+ product.getPrice() + ") ")
+                .toList();
+    }
+
+
 }
