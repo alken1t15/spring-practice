@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${category!=null}">
+    <div th:each="product : ${category.getProducts()}" style="border-bottom: 1px solid black; font-size: 30px">
+        <p>Category name: <b th:text="${category.getName()}"></b></p>
+        <p>Name product:  <b th:text="${product.getName()}"></b></p>
+        <p>Price: <b th:text="${product.getPrice()}"></b></p>
+    </div>
+</div>
+
+<b th:if="${category==null}" style="color: red; font-size: 60px; margin: 0 auto; width: 700px; display: block; padding-top: 50px">There is no such category</b>
+</body>
+</html>

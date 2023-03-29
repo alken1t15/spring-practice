@@ -12,6 +12,7 @@
     <p>Age: <b th:text="${user.getAge()}"></b></p>
 </div>
 
+<b th:if="${user.getAge() < 18}">User is under 18</b>
 
 
 </body>
