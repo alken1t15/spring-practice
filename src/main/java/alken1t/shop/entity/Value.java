@@ -1,9 +1,11 @@
 package alken1t.shop.entity;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "values")
+@NoArgsConstructor
 public class Value {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +20,12 @@ public class Value {
     private Option option;
 
     private String value;
+
+    public Value(Product product, Option option, String value) {
+        this.product = product;
+        this.option = option;
+        this.value = value;
+    }
 
     public Long getId() {
         return id;

@@ -5,7 +5,7 @@
     <title>Create product</title>
 </head>
 <body>
-<form th:action="@{create_product}" method="post">
+<form action="/product" method="post">
 
   <input type="text" name="categoryId" th:value="${category.id}">
 

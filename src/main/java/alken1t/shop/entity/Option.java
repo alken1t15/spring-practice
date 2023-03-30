@@ -1,10 +1,13 @@
 package alken1t.shop.entity;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
 @Table(name = "options")
+@NoArgsConstructor
 public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

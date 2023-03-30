@@ -1,10 +1,13 @@
 package alken1t.shop.entity;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
 @Table(name = "products")
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +23,12 @@ public class Product {
     private String name;
 
     private Integer price;
+
+    public Product(Category category, String name, Integer price) {
+        this.category = category;
+        this.name = name;
+        this.price = price;
+    }
 
     public Long getId() {
         return id;
