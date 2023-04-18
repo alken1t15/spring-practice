@@ -23,8 +23,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from  Product  p where p.category.name = ?1 and p.price between ?2 and  ?3 ")
     List<Product> findAllByCategoryAndPrice(String categoryName,int from, int to);
 
-    @Modifying
+
     @Transactional
+    @Modifying
     @Query("update Product  p set p.price = p.price + (p.price * ?1 / 100) where  p.category.id = ?2")
     void updateProductsPriceByCategory(int percent, long categoryId);
 }
