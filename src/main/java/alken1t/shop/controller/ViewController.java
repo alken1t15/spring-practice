@@ -38,21 +38,21 @@ public class ViewController {
     @GetMapping(path = "/third_resource")
     public String thirdResource(Model model) {
         List<User> users = new ArrayList<>();
-        users.add(new User("Bill",66));
-        users.add(new User("Jeff",35));
-        users.add(new User("Mick",17));
-        users.add(new User("Max",25));
-        model.addAttribute("users",users);
+        users.add(new User("Bill", 66));
+        users.add(new User("Jeff", 35));
+        users.add(new User("Mick", 17));
+        users.add(new User("Max", 25));
+        model.addAttribute("users", users);
         return "third_resource_page";
     }
 
     @GetMapping(path = "/fourth_resource")
-    public String fourthResource(Model model){
+    public String fourthResource(Model model) {
         Sort sort = Sort.by(
-          Sort.Order.desc("price")
+                Sort.Order.desc("price")
         );
-       List<Product> products = productRepository.findAll(sort);
-       model.addAttribute("products",products);
+        List<Product> products = productRepository.findAll(sort);
+        model.addAttribute("products", products);
         return "fourth_resource_page";
     }
 }

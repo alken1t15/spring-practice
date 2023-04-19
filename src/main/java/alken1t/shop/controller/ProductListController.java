@@ -20,9 +20,9 @@ public class ProductListController {
     CategoryRepository categoryRepository;
 
     @GetMapping
-    public String productListPage(@RequestParam long categoryId, Model model){
+    public String productListPage(@RequestParam long categoryId, Model model) {
         Category category = categoryRepository.findById(categoryId).orElse(null);
-        model.addAttribute("category",category);
+        model.addAttribute("category", category);
         return "product_resource_page";
     }
 }

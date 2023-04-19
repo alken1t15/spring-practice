@@ -99,27 +99,27 @@ public class DataController {
     }
 
     @GetMapping(path = "/create_new_entity")
-    public void createNewEntity(){
+    public void createNewEntity() {
         Category category = new Category();
         category.setName("Мебель");
         categoryRepository.save(category);
     }
 
     @GetMapping(path = "/update_entity")
-    public void updateNewEntity(@RequestParam long categoryId,@RequestParam String categoryName){
-     Category category = categoryRepository.findById(categoryId).orElseThrow();
-     category.setName(categoryName);
-     categoryRepository.save(category);
+    public void updateNewEntity(@RequestParam long categoryId, @RequestParam String categoryName) {
+        Category category = categoryRepository.findById(categoryId).orElseThrow();
+        category.setName(categoryName);
+        categoryRepository.save(category);
     }
 
     @GetMapping(path = "/delete_entity")
-    public void deleteEntity(@RequestParam long categoryId){
+    public void deleteEntity(@RequestParam long categoryId) {
         categoryRepository.deleteById(categoryId);
     }
 
     @GetMapping(path = "/increase_product_price")
-    public void increaseProductPrice(@RequestParam int percent, @RequestParam long categoryId){
-        productRepository.updateProductsPriceByCategory(percent,categoryId);
+    public void increaseProductPrice(@RequestParam int percent, @RequestParam long categoryId) {
+        productRepository.updateProductsPriceByCategory(percent, categoryId);
 
     }
 

@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.*;
 public class FormController {
 
     @GetMapping
-    public String formPage(){
+    public String formPage() {
         return "form_page";
     }
 
     @PostMapping
     @ResponseBody
-    public String formAction(@RequestParam String country,@RequestParam String login, @RequestParam String password){
-        System.out.printf("Country: %s%n",country);
-        System.out.printf("Login: %s%n",login);
-        System.out.printf("Password: %s%n",password);
+    public String formAction(@RequestParam String country, @RequestParam String login, @RequestParam String password) {
+        System.out.printf("Country: %s%n", country);
+        System.out.printf("Login: %s%n", login);
+        System.out.printf("Password: %s%n", password);
         return "Успешно";
     }
 }
